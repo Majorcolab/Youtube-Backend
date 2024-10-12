@@ -9,9 +9,10 @@ import {verifyJWT} from "../middlewares/auth.middleware.js"
 
 const router = Router();
 
-router.route("/toggle/v/:videoId").post(toggleVideoLike);
-router.route("/toggle/c/:commentId").post(toggleCommentLike);
-router.route("/toggle/t/:tweetId").post(toggleTweetLike);
-router.route("/videos").get(getLikedVideos);
+router.route("/video-likes/:videoId").post(verifyJWT, toggleVideoLike);
+router.route("/comment-likes/:commentId").post(verifyJWT, toggleCommentLike);
+router.route("/tweet-likes/:tweetId").post(verifyJWT, toggleTweetLike);
+router.route("/liked-videos/:userId").get(verifyJWT, getLikedVideos);
+
 
 export default router
